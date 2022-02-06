@@ -1,4 +1,4 @@
-module github.com/rrm003/grpc
+module github.com/rrm003/grpc/user
 
 go 1.16
 

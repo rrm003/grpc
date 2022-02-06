@@ -12,6 +12,10 @@ import (
 	pb "github.com/rrm003/grpc/user"
 )
 
+const(
+	addr=":8080"
+)
+
 var (
 	userregistry []*pb.User
 )
@@ -34,14 +38,16 @@ func (s *UserManagementServer) 	GetAllUser(ctx context.Context, in *pb.ListUsers
 }
 
 func main(){
-	lis,err:=net.Listen("tcp","127.0.0.1:8080")
+	log.Println("starting server...")
+	lis,err:=net.Listen("tcp",addr)
 	if err!=nil{
 		log.Fatal(err)
 	}
+	log.Println("listening at :", addr)
 	mux := runtime.NewServeMux()
 	ctx,cancel:=context.WithCancel(context.Background())
 	defer cancel()
-
+	
 	pb.RegisterUserManagementHandlerServer(ctx, mux, &UserManagementServer{})
 	
 	if err=http.Serve(lis,mux);err!=nil{
