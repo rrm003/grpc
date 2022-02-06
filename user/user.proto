@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "./user";
+import "google/api/annotations.proto";
+
+message NewUser{
+        string name = 2;
+        int32 age = 3;
+}
+
+message User{
+        int32 id = 1;
+        string name = 2;
+        int32 age = 3;
+}
+message ListUsersRequest {}
+
+message ListUsersResponse{
+        repeated User list = 1;
+}
+
+service UserManagement {
+    rpc CreateNewUser (NewUser) returns (User) {
+        option (google.api.http) = {
+                post: "/v1/user"
+                body: "*"
+        };
+    }
+    rpc GetAllUser(ListUsersRequest) returns (ListUsersResponse) {
+        option (google.api.http) = {
+                get: "/v1/user"
+        };
+    }
+}
