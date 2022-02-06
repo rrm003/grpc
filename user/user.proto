@@ -6,19 +6,32 @@ option go_package = "./user";
 import "google/api/annotations.proto";
 
 message NewUser{
-        string name = 2;
-        int32 age = 3;
+        string fname = 1;
+        int32 age = 2;
+        string city = 3;
+        int32 phone = 4;
+        float height = 5;
+        bool married = 6;
 }
 
 message User{
         int32 id = 1;
-        string name = 2;
+        string fname = 2;
         int32 age = 3;
+        string city = 4;
+        int32 phone = 5;
+        float height = 6;
+        bool married = 7;
 }
+
 message ListUsersRequest {}
 
 message ListUsersResponse{
         repeated User list = 1;
+}
+
+message UserRequest{
+        int32 id = 1;
 }
 
 service UserManagement {
@@ -31,6 +44,11 @@ service UserManagement {
     rpc GetAllUser(ListUsersRequest) returns (ListUsersResponse) {
         option (google.api.http) = {
                 get: "/v1/user"
+        };
+    }
+    rpc GetUser(UserRequest) returns (User) {
+        option (google.api.http) = {
+                get: "/v1/user/{id}"
         };
     }
 }
