@@ -1,0 +1,131 @@
+swagger: "2.0"
+info:
+    title: user/user.proto
+    version: version not set
+consumes:
+    - application/json
+produces:
+    - application/json
+paths:
+    /v1/user:
+        get:
+            operationId: UserManagement_GetAllUser
+            responses:
+                "200":
+                    description: A successful response.
+                    schema:
+                        $ref: "#/definitions/userListResponse"
+                default:
+                    description: An unexpected error response.
+                    schema:
+                        $ref: "#/definitions/runtimeError"
+            tags:
+                - UserManagement
+        post:
+            operationId: UserManagement_CreateNewUser
+            responses:
+                "200":
+                    description: A successful response.
+                    schema:
+                        $ref: "#/definitions/user"
+                default:
+                    description: An unexpected error response.
+                    schema:
+                        $ref: "#/definitions/runtimeError"
+            parameters:
+                - name: body
+                  in: body
+                  required: true
+                  schema:
+                      $ref: "#/definitions/newUser"
+            tags:
+                - UserManagement
+    /v1/user/{id}:
+        get:
+            operationId: UserManagement_GetUser
+            responses:
+                "200":
+                    description: A successful response.
+                    schema:
+                        $ref: "#/definitions/user"
+                default:
+                    description: An unexpected error response.
+                    schema:
+                        $ref: "#/definitions/runtimeError"
+            parameters:
+                - name: id
+                  in: path
+                  required: true
+                  type: integer
+                  format: int32
+            tags:
+                - UserManagement
+definitions:
+    protobufAny:
+        type: object
+        properties:
+            type_url:
+                type: string
+            value:
+                type: string
+                format: byte
+    runtimeError:
+        type: object
+        properties:
+            error:
+                type: string
+            code:
+                type: integer
+                format: int32
+            message:
+                type: string
+            details:
+                type: array
+                items:
+                    $ref: "#/definitions/protobufAny"
+    userListResponse:
+        type: object
+        properties:
+            list:
+                type: array
+                items:
+                    $ref: "#/definitions/user"
+    newUser:
+        type: object
+        properties:
+            fname:
+                type: string
+            age:
+                type: integer
+                format: int32
+            city:
+                type: string
+            phone:
+                type: integer
+                format: int32
+            height:
+                type: number
+                format: float
+            married:
+                type: boolean
+    user:
+        type: object
+        properties:
+            id:
+                type: integer
+                format: int32
+            fname:
+                type: string
+            age:
+                type: integer
+                format: int32
+            city:
+                type: string
+            phone:
+                type: integer
+                format: int32
+            height:
+                type: number
+                format: float
+            married:
+                type: boolean
