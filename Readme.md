@@ -1,23 +1,24 @@
-##This is Golang GRPC server with REST client.
-Source code : https://github.com/rrm003/grpc
-Docker image : https://hub.docker.com/repository/docker/rrm003/user-app/general
+# This is Golang GRPC server with REST client. #
 
-##Steps to interact with server
+* Source code : https://github.com/rrm003/grpc
+* Docker image : https://hub.docker.com/repository/docker/rrm003/user-app/general
 
--####Get the docker image for app
+## Steps to interact with server
+
+   - #### Get the docker image for app
 
 ```
 docker pull rrm003/user-app:latest
 ```
 
--####Run app image
+   - #### Run app image
 
 ```
 docker run --publish 8080:8080 rrm003/user-app
 ```
 
--####Start interacting with app with below api:
-Detail doumentaion for API : (https://rrm003.github.io/grpc)
+   - #### Start interacting with app with below api:
+      Detail doumentaion for API : (https://rrm003.github.io/grpc)
 
 1. Create User
 
