@@ -1,7 +1,7 @@
 # This is Golang GRPC server with REST client. #
 
 * Source code : https://github.com/rrm003/grpc
-* Docker image : https://hub.docker.com/repository/docker/rrm003/user-app/general
+* Docker image : https://hub.docker.com/r/rrm003/user-app
 
 ## Steps to interact with server
 
